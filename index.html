@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Барн у Монастыря — Дом в Переславле-Залесском</title>
+    <meta name="description" content="Стильный дом у стен Никитского монастыря. Тишина, природа, банный чан, баня. До 6 гостей. Бронирование онлайн.">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .bg-image { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(250, 248, 240, 0.75); z-index: -1; }
+        body { font-family: 'Nunito Sans', sans-serif; color: #1a1a1a; line-height: 1.7; background: #fafaf8; }
+        .container { max-width: 1040px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+        section { padding: 70px 0; position: relative; z-index: 1; }
+        section:nth-child(even) { background: rgba(255,255,255,0.6); }
+        section:nth-child(odd) { background: rgba(250,248,240,0.4); }
+        h2, h3, h4 { font-family: 'Nunito Sans', sans-serif; }
+
+        header { background: linear-gradient(135deg, rgba(26,58,42,0.92) 0%, rgba(38,92,58,0.92) 100%); color: #f0ead6; padding: 80px 0 60px; text-align: center; position: relative; z-index: 1; }
+        header h1 { font-size: 3em; margin-bottom: 12px; font-weight: 600; letter-spacing: 3px; font-style: italic; }
+        header p { font-size: 1.15em; opacity: 0.85; max-width: 550px; margin: 0 auto; font-style: italic; }
+        .hero-btn { display: inline-block; margin-top: 32px; padding: 14px 48px; background: #c8a86b; color: #1a1a1a; text-decoration: none; border-radius: 6px; font-size: 1.05em; font-weight: 600; letter-spacing: 0.5px; transition: 0.3s; text-transform: uppercase; font-style: italic; }
+        .hero-btn:hover { background: #b8923e; }
+
+        nav { background: rgba(255,255,255,0.9); padding: 14px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 8px rgba(0,0,0,0.04); border-bottom: 1px solid #eee; backdrop-filter: blur(10px); }
+        nav .container { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
+        nav a { color: #444; text-decoration: none; font-weight: 600; font-size: 0.95em; transition: 0.3s; letter-spacing: 0.3px; font-style: italic; }
+        nav a:hover { color: #b8923e; }
+
+        .photo-placeholder { background: rgba(232,229,223,0.7); border-radius: 8px; display: flex; align-items: center; justify-content: center; min-height: 260px; color: #888; font-style: italic; margin: 20px 0; border: 2px dashed rgba(204,204,204,0.5); font-size: 0.95em; }
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; }
+        .photo-grid .photo-placeholder { margin: 0; min-height: 220px; }
+        .photo-grid-banya { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 30px; }
+        .photo-grid-banya .photo-placeholder { margin: 0; min-height: 200px; }
+
+        h2 { font-size: 2em; margin-bottom: 36px; color: #1a3a2a; font-weight: 600; text-align: center; letter-spacing: 1px; font-style: italic; }
+        h3 { font-size: 1.4em; margin-bottom: 16px; color: #1a3a2a; font-weight: 600; font-style: italic; }
+        p { font-style: italic; }
+
+        .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .amenity-card { background: rgba(244,242,236,0.8); padding: 28px 20px; border-radius: 8px; text-align: center; font-size: 0.95em; font-style: italic; }
+        .amenity-card .icon { font-size: 2em; margin-bottom: 10px; font-style: normal; }
+
+        .calculator { background: rgba(26,58,42,0.9); color: #f0ead6; padding: 40px 32px; border-radius: 8px; max-width: 600px; margin: 0 auto; }
+        .calculator label { display: block; margin: 16px 0 6px; font-weight: 600; font-size: 0.95em; font-style: italic; }
+        .calculator input, .calculator select { width: 100%; padding: 12px; border: none; border-radius: 6px; font-size: 0.95em; margin-bottom: 8px; font-style: italic; }
+        .calculator .result { font-size: 2.2em; font-weight: 700; margin: 20px 0; text-align: center; color: #c8a86b; font-style: italic; }
+        .book-btn { display: block; width: 100%; padding: 15px; background: #c8a86b; color: #1a1a1a; border: none; border-radius: 6px; font-size: 1.05em; font-weight: 600; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 0.8px; font-style: italic; }
+        .book-btn:hover { background: #b8923e; }
+
+        .review-card { background: rgba(255,255,255,0.8); padding: 28px 30px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); margin-bottom: 20px; border-left: 4px solid #c8a86b; }
+        .review-card .stars { color: #c8a86b; font-size: 1.1em; margin-bottom: 8px; font-style: normal; }
+        .review-card .name { font-weight: 600; color: #1a3a2a; margin-bottom: 4px; font-style: italic; }
+        .review-card .date { color: #999; font-size: 0.85em; margin-bottom: 14px; font-style: italic; }
+        .review-card .text { font-style: italic; line-height: 1.8; color: #444; }
+
+        .rules-list { list-style: none; max-width: 720px; margin: 0 auto; }
+        .rules-list li { padding: 12px 24px; margin: 6px 0; background: rgba(252,248,240,0.8); border-left: 4px solid #c8a86b; border-radius: 0 6px 6px 0; font-size: 0.95em; font-style: italic; }
+
+        .banya-highlight { background: rgba(250,245,235,0.8); padding: 40px 30px; border-radius: 8px; max-width: 750px; margin: 0 auto 40px; text-align: center; }
+        .banya-highlight .price-tag { font-size: 1.3em; font-weight: 700; color: #1a3a2a; background: #c8a86b; display: inline-block; padding: 6px 18px; border-radius: 4px; margin: 10px 5px; font-style: italic; }
+
+        .camera-notice { background: rgba(240,237,229,0.8); padding: 20px 30px; border-radius: 8px; max-width: 700px; margin: 30px auto 0; text-align: center; font-size: 0.9em; color: #666; border: 1px solid rgba(221,221,221,0.5); font-style: italic; }
+
+        .contact-card { text-align: center; padding: 40px 30px; background: rgba(244,242,236,0.8); border-radius: 8px; max-width: 520px; margin: 0 auto; }
+        .contact-card a { display: inline-block; margin: 8px; padding: 12px 32px; background: #25D366; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.95em; letter-spacing: 0.5px; font-style: italic; }
+        .contact-card a.telegram { background: #0088cc; }
+        .contact-card a.email { background: #1a3a2a; }
+
+        footer { text-align: center; padding: 32px; background: rgba(26,58,42,0.9); color: #bbb; font-size: 0.85em; position: relative; z-index: 1; }
+        footer p { font-style: italic; }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2em; }
+            nav .container { gap: 14px; }
+            nav a { font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+
+<img class="bg-image" src="фото/fasad.jpg" alt="Фон">
+<div class="bg-overlay"></div>
+
+<header>
+    <div class="container">
+        <h1>Барн у Монастыря</h1>
+        <p>Стильный дом с видом на Никитский монастырь • Тишина, природа, уединение</p>
+        <a href="#booking" class="hero-btn">Забронировать</a>
+    </div>
+</header>
+
+<nav>
+    <div class="container">
+        <a href="#about">О доме</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#rooms">Спальни</a>
+        <a href="#amenities">Удобства</a>
+        <a href="#banya">Баня и чан</a>
+        <a href="#booking">Бронирование</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#rules">Правила</a>
+        <a href="#contacts">Контакты</a>
+    </div>
+</nav>
+
+<section id="about">
+    <div class="container">
+        <h2>О доме</h2>
+        <p style="max-width:720px; margin: 0 auto 20px; text-align: center; font-size: 1.1em; font-weight:600;">Там, где встречаются стиль и тишина.</p>
+        <img src="фото/fasad.jpg" alt="Дом" style="width:100%; max-width:800px; height:300px; object-fit:cover; border-radius:8px; display:block; margin:0 auto 30px;">
+        <p style="max-width:720px; margin: 0 auto; text-align: center; font-size: 1.05em;">
+            «Барн у Монастыря» — это не просто дом. Это место, где современная архитектура встречается с вековой историей. Из панорамных окон открывается вид на древний Никитский монастырь. Утром вы просыпаетесь под звон колоколов, днём гуляете у озера, а вечером провожаете закат на веранде с бокалом вина.
+        </p>
+        <p style="max-width:720px; margin: 20px auto 0; text-align: center; color: #555;">
+            📍 3 км до центра Переславля-Залесского • 5 минут до Плещеева озера • 12 соток private-территории • Круглогодично
+        </p>
+        <p style="max-width:720px; margin: 10px auto 0; text-align: center; color: #555; font-weight:600;">
+            🔑 Заселение полностью удалённое — вы получаете код от двери, никаких встреч и ожиданий.
+        </p>
+    </div>
+</section>
+
+<section id="gallery">
+    <div class="container">
+        <h2>Галерея</h2>
+        <div class="photo-grid">
+            <img src="фото/gostinaya.jpg" alt="Гостиная" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Гостиная ]</div>
+            <img src="фото/kuhnya.jpg" alt="Кухня" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Кухня ]</div>
+            <img src="фото/monastyr.jpg" alt="Вид" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Вид на монастырь ]</div>
+            <img src="фото/veranda.jpg" alt="Веранда" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Веранда ]</div>
+            <img src="фото/uchastok.jpg" alt="Участок" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Участок ]</div>
+            <img src="фото/mangal.jpg" alt="Мангал" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Мангал ]</div>
+            <img src="фото/vannaya.jpg" alt="Ванная" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Ванная ]</div>
+            <img src="фото/gostinaya2.jpg" alt="Доп фото 2" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Доп. фото 2 ]</div>
+            <img src="фото/gostinaya3.jpg" alt="Доп фото 3" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Доп. фото 3 ]</div>
+            <img src="фото/gostinaya4.jpg" alt="Доп фото 4" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Доп. фото 4 ]</div>
+            <img src="фото/gostinaya5.jpg" alt="Доп фото 5" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Доп. фото 5 ]</div>
+            <img src="фото/gostinaya6.jpg" alt="Доп фото 6" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Доп. фото 6 ]</div>
+        </div>
+    </div>
+</section>
+
+<section id="rooms">
+    <div class="container">
+        <h2>Спальни и размещение</h2>
+        <div class="photo-grid">
+            <img src="фото/spalnya1.jpg" alt="Главная спальня" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Главная спальня ]</div>
+            <img src="фото/spalnya2.jpg" alt="Вторая спальня" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Вторая спальня ]</div>
+        </div>
+        <div style="max-width:620px; margin: 32px auto; font-size: 0.95em;">
+            <p><strong>Главная спальня:</strong> двуспальная кровать 160×200 с ортопедическим матрасом, а также детская кроватка для малышей до 4-х лет.</p>
+            <p><strong>Вторая спальня:</strong> две односпальные кровати 90×200 с ортопедическими матрасами.</p>
+            <p>🛏️ В обеих спальнях на окнах — шторы блэкаут для полной темноты и крепкого сна.</p>
+            <p><strong>Гостиная:</strong> просторный раскладной диван 140×200 — полноценное спальное место.</p>
+        </div>
+        <div class="photo-grid" style="max-width:400px; margin: 0 auto;">
+            <img src="фото/gostinaya.jpg" alt="Диван в гостиной" style="width:100%; height:220px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Диван в гостиной ]</div>
+        </div>
+        <p style="text-align:center; margin-top: 15px;">Идеально для 4-х, с комфортом до 6 гостей.</p>
+    </div>
+</section>
+
+<section id="amenities">
+    <div class="container">
+        <h2>Удобства</h2>
+        <div class="amenities-grid">
+            <div class="amenity-card"><div class="icon">🍳</div><strong>Кухня</strong><br>Холодильник, духовка, посудомойка, кофемашина</div>
+            <div class="amenity-card"><div class="icon">🚿</div><strong>Ванная</strong><br>Душ, фен, халаты, полотенца, зубные щётки</div>
+            <div class="amenity-card"><div class="icon">👕</div><strong>Стирка</strong><br>Стиральная машина</div>
+            <div class="amenity-card"><div class="icon">🌅</div><strong>Веранда</strong><br>Вид на закат и монастырь</div>
+            <div class="amenity-card"><div class="icon">🥩</div><strong>Мангал</strong><br>Казан, решётки, шампура</div>
+            <div class="amenity-card"><div class="icon">🚗</div><strong>Парковка</strong><br>3 места</div>
+            <div class="amenity-card"><div class="icon">📶</div><strong>Wi-Fi</strong></div>
+            <div class="amenity-card"><div class="icon">🔑</div><strong>Заезд</strong><br>Удалённо, без встречи</div>
+        </div>
+    </div>
+</section>
+
+<section id="banya">
+    <div class="container">
+        <h2>Баня и чан</h2>
+        <div class="banya-highlight">
+            <p style="font-size:1.15em; margin-bottom:20px;">После долгой прогулки по Переславлю или целого дня у озера нет ничего лучше, чем <strong>расслабиться в горячем чану под открытым небом</strong>. Представьте: прохладный вечер, звёзды над головой, лёгкий пар и полное умиротворение. Или настоящая русская баня — жаркий пар, душистый веник и комната отдыха, где можно остыть с чашкой чая.</p>
+            <p style="margin-bottom:16px;"><strong>Польза:</strong> банный жар и чан снимают усталость, очищают кожу, укрепляют иммунитет и дарят ощущение обновления. Это не просто удовольствие — это перезагрузка для тела и души.</p>
+            <p style="font-size:1.05em; font-weight:600; margin-bottom:6px;">Стоимость:</p>
+            <span class="price-tag">Чан: 6 000 ₽</span>
+            <span class="price-tag">Баня: 7 000 ₽</span>
+            <p style="margin-top:12px; font-size:0.9em; color:#666;">Самостоятельная топка • Добавьте к бронированию</p>
+        </div>
+        <p style="text-align:center; font-weight:600; margin-bottom:20px; font-style:italic;">Фотографии:</p>
+        <div class="photo-grid-banya">
+            <img src="фото/chan1.jpg" alt="Чан 1" style="width:100%; height:200px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Чан 1 ]</div>
+            <img src="фото/chan2.jpg" alt="Чан 2" style="width:100%; height:200px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Чан 2 ]</div>
+            <img src="фото/banya1.jpg" alt="Баня 1" style="width:100%; height:200px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Баня 1 ]</div>
+            <img src="фото/banya2.jpg" alt="Баня 2" style="width:100%; height:200px; object-fit:cover; border-radius:8px;" onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';"><div class="photo-placeholder fallback" style="display:none;">[ Баня 2 ]</div>
+        </div>
+    </div>
+</section>
+
+<section id="booking">
+    <div class="container">
+        <h2>Бронирование</h2>
+        <div class="calculator">
+            <label for="checkin">Дата заезда:</label>
+            <input type="date" id="checkin">
+            <label for="checkout">Дата выезда:</label>
+            <input type="date" id="checkout">
+            <label for="guests">Количество гостей:</label>
+            <select id="guests">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4" selected>4</option><option value="5">5</option><option value="6">6</option>
+            </select>
+            <div class="result" id="total">— ₽</div>
+            <p style="text-align:center; font-size:0.9em; opacity:0.9;" id="details"></p>
+            <button class="book-btn" onclick="bookNow()">Забронировать в WhatsApp</button>
+        </div>
+        <p style="text-align:center; margin-top:20px; color:#555; font-size:0.9em;">
+            Залог: 10 000 ₽ (возвращается после уборки при отсутствии повреждений)
+        </p>
+    </div>
+</section>
+
+<section id="reviews">
+    <div class="container">
+        <h2>Отзывы гостей</h2>
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="name">Elle E.</div>
+            <div class="date">Март 2026</div>
+            <div class="text">Замечательно отдохнули в доме! Понравились чистота, тишина и уют! Интерьер оформлен со вкусом и любовью. В доме есть все необходимое: зубные наборы, мыло, гели, шампунь, на кухне так же все продумано и предусмотрено. Смело рекомендуем!</div>
+        </div>
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="name">Анастасия Буровенцева</div>
+            <div class="date">Апрель 2026</div>
+            <div class="text">Отдыхали с семьей в этом прекрасном месте 🥰 Гостеприимство 😊😊😊 Полотенца, халаты, одноразовые щетки, шампуни и гели для душа - приятно, когда заботятся. Чан - это отдельная история, чистый, теплый, никаких не было затруднений разжечь его. Всё понравилось, благодарим! Вернёмся снова 🌟</div>
+        </div>
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="name">Вероника</div>
+            <div class="date">Август 2025</div>
+            <div class="text">Всем рекомендую остановиться в этом домике, расслабитесь и насладитесь эстетикой! В доме все чистенько, уютно, стильная, качественная посуда, есть все, даже подносы, дорожка сервировочнаяяяя) это отдельно лайк) на всех гостей халаты, полотенца, одноразовые щетки. Ребята большие умнички, проявляли сами инициативу, предложив пораньше нам подготовить чан. В бане все новое, чан чистый, ухоженный. Пока друзья жарили шашлыки, мы застали красивейший закат на фоне монастыря 😍😍 Тысячу раз рекомендую и спасибо! 🥰🥰</div>
+        </div>
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="name">Знаток города</div>
+            <div class="date">Сентябрь 2025</div>
+            <div class="text">Останавливались компанией из 4 человек в этом доме на 1 ночь с 6 по 7 сентября и пожалели что приехали сюда только переночевать)) Дом полностью соответствует описанию, было предоставлено все, что заявлено при бронировании. Общение с хозяевами проходило без нареканий, на все вопросы получили развёрнутые ответы, всегда быстро и без проблем. Разрешили выехать на час позже, за что большое спасибо, не пришлось спешить и мы спокойно позавтракали и убрались. Внутри дом совпадает с фотографиями, все новое и очень чисто. Пользовались только чаном, но если было бы время, то и в сауну сходили бы. У всех остались положительные эмоции, хочется вернуться туда и остаться на все выходные. Спасибо большое хозяевам дома за уют и комфорт во всем. Надеюсь ещё вернёмся в Переславль и в этот дом.</div>
+        </div>
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="name">Елена Волкова</div>
+            <div class="date">Октябрь 2025</div>
+            <div class="text">Из многочисленных вариантов, нам приглянулся именно Барнхауз у озера. В нём есть все для комфортного проживания, чисто, уютно, современно, эстетично. На территории прекрасный чан и баня. Отдохнуть и расслабиться получилось за три дня, за чем собственно и ехали. Остались только положительные эмоции! Всем рекомендуем! Ещё раз огромное спасибо за постоянную, оперативную связь и прекрасный отдых!</div>
+        </div>
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="name">Алиночка</div>
+            <div class="date">Август 2025</div>
+            <div class="text">Идеальный загородный дом для отличного отдыха! Провели замечательные выходные наслаждаясь тишиной и природой. В доме было чисто, уютно, все новое и сделано со вкусом. Хозяева предусмотрели все необходимое для проживания (тапочки, халаты, зубные щетки, полотенца...). Так же на территории дома есть чан и баня, рекомендую 100%. Хозяева отвечают оперативно на все вопросы. Обязательно вернемся сюда снова!</div>
+        </div>
+    </div>
+</section>
+
+<section id="rules">
+    <div class="container">
+        <h2>Правила проживания</h2>
+        <ul class="rules-list">
+            <li>🚭 Строго запрещено курение в доме (даже в окно), в том числе электронных сигарет, кальяна. Штраф 10 000 руб.</li>
+            <li>🔥 Запрещено разжигать открытые источники огня в доме и на веранде (хлопушки, петарды, бенгальские огни, фейерверки и т.д.)</li>
+            <li>👟 Запрещено хождение в доме в уличной обуви. Разувайтесь сразу на входе. Мы подготовили одноразовые тапочки.</li>
+            <li>🐾 Проживание с животными запрещено.</li>
+            <li>👥 Количество гостей в доме круглосуточно строго равно количеству, указанному в бронировании.</li>
+            <li>⚠️ Небрежно относиться к дому, участку, вещам (ущерб будет удержан из залога).</li>
+            <li>🚽 Нельзя смывать в унитаз посторонние предметы, агрессивные химические средства, наполнители для животных.</li>
+            <li>⏰ Заезд — после 15:00. Выезд — до 12:00. Ранний заезд и поздний выезд оговариваются и оплачиваются отдельно.</li>
+            <li>💳 Залог 10 000 руб. вносится во время заезда и возвращается в день выезда до 20:00, после проведения уборки, при условии, что все имущество без повреждений.</li>
+            <li>🔑 Заселение полностью удалённое — с помощью кодового замка. Для бронирования потребуется паспорт и заключение договора, подписывается удаленно.</li>
+            <li>📹 На территории установлена камера видеонаблюдения, обращенная на калитку и парковочное место. Это для безопасности гостей и сохранности имущества. Залог не возвращается в случае нарушения правил.</li>
+        </ul>
+        <p style="text-align:center; margin-top:20px; font-style:italic;">Относитесь ко всему имуществу в домике бережно. Мы очень любим свой дом, и наших гостей! Работаем, чтобы вам было комфортно и приятно наслаждаться отдыхом!</p>
+    </div>
+</section>
+
+<section id="contacts">
+    <div class="container">
+        <h2>Контакты</h2>
+        <div class="contact-card">
+            <p style="font-size:1.1em; margin-bottom:5px; font-style:italic;">Свяжитесь с нами:</p>
+            <p style="margin-bottom:15px; font-style:italic; font-size:0.95em; color:#555;">📍 г. Переславль-Залесский, село Никитская Слобода, ул. Кооперативная, д. 58</p>
+            <a href="https://wa.me/79778810912" target="_blank">💬 WhatsApp</a>
+            <a href="https://t.me/+79778810912" target="_blank" class="telegram">✈️ Telegram</a>
+            <a href="mailto:marat.paytyan@mail.ru" class="email">📧 Написать на почту</a>
+            <p style="margin-top:20px; color:#555; font-size:1.05em;">📞 +7 977 881-09-12</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>Барн у Монастыря • Переславль-Залесский • 2025</p>
+        <p>Тишина. Природа. История.</p>
+    </div>
+</footer>
+
+<script>
+    const BUDNI = 12000;
+    const VIH = 14000;
+    const PRAZD = 25000;
+    const HIGH = 35000;
+    const ZALOG = 10000;
+    
+    const prazdniki = ['06-12', '05-09'];
+    
+    function isHighSeason(date) {
+        const m = date.getMonth() + 1;
+        const d = date.getDate();
+        if (m === 1 && d >= 1 && d <= 11) return true;
+        if (m === 5 && d >= 1 && d <= 10) return true;
+        return false;
+    }
+    
+    function isPrazdnik(date) {
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        return prazdniki.includes(m + '-' + d);
+    }
+    
+    function isWeekend(date) {
+        const day = date.getDay();
+        return day === 0 || day === 6;
+    }
+    
+    function getPriceForDate(date) {
+        if (isHighSeason(date)) return HIGH;
+        if (isPrazdnik(date)) return PRAZD;
+        if (isWeekend(date)) return VIH;
+        return BUDNI;
+    }
+    
+    function calculate() {
+        const checkin = document.getElementById('checkin').value;
+        const checkout = document.getElementById('checkout').value;
+        const guests = parseInt(document.getElementById('guests').value);
+        
+        if (!checkin || !checkout) {
+            document.getElementById('total').textContent = '— ₽';
+            document.getElementById('details').textContent = '';
+            return;
+        }
+        
+        const start = new Date(checkin);
+        const end = new Date(checkout);
+        const nights = Math.round((end - start) / (1000 * 60 * 60 * 24));
+        
+        if (nights <= 0) {
+            document.getElementById('total').textContent = 'Выберите даты';
+            document.getElementById('details').textContent = '';
+            return;
+        }
+        
+        let total = 0;
+        let current = new Date(start);
+        
+        for (let i = 0; i < nights; i++) {
+            total += getPriceForDate(current);
+            current.setDate(current.getDate() + 1);
+        }
+        
+        let discount = 0;
+        let discountText = '';
+        if (nights >= 7) {
+            discount = 0.10;
+            discountText = 'Скидка 10% (от 7 суток)';
+        } else if (nights >= 3) {
+            discount = 0.05;
+            discountText = 'Скидка 5% (от 3 суток)';
+        }
+        
+        const finalTotal = Math.round(total * (1 - discount));
+        
+        document.getElementById('total').textContent = finalTotal.toLocaleString('ru-RU') + ' ₽';
+        const nightWord = nights % 10 === 1 && nights % 100 !== 11 ? 'ночь' : [2,3,4].includes(nights % 10) && ![12,13,14].includes(nights % 100) ? 'ночи' : 'ночей';
+        document.getElementById('details').textContent = nights + ' ' + nightWord + (discountText ? ' • ' + discountText : '') + ' • Залог: ' + ZALOG.toLocaleString('ru-RU') + ' ₽';
+        
+        window._bookingData = { checkin, checkout, guests, nights, total: finalTotal };
+    }
+    
+    function bookNow() {
+        if (!window._bookingData) {
+            alert('Пожалуйста, выберите даты заезда и выезда.');
+            return;
+        }
+        const d = window._bookingData;
+        const msg = `Здравствуйте! Хочу забронировать "Барн у Монастыря".%0AДаты: с ${d.checkin} по ${d.checkout}%0AНочей: ${d.nights}%0AГостей: ${d.guests}%0AСумма: ${d.total.toLocaleString('ru-RU')} ₽%0A%0AПожалуйста, подтвердите бронирование.`;
+        window.open('https://wa.me/79778810912?text=' + msg, '_blank');
+    }
+    
+    document.getElementById('checkin').addEventListener('change', calculate);
+    document.getElementById('checkout').addEventListener('change', calculate);
+    document.getElementById('guests').addEventListener('change', calculate);
+    
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('checkin').setAttribute('min', today);
+    document.getElementById('checkout').setAttribute('min', today);
+</script>
+
+</body>
+</html>
